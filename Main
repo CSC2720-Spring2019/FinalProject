@@ -1,0 +1,54 @@
+//import java.util.Date;
+import java.util.LinkedList;
+import java.util.Scanner;
+import java.util.Stack;
+
+public class Main{
+	LinkedList<Note> list = new LinkedList<Note>();
+	Stack<Note> stack = new Stack<Note>();
+	
+	public static void main(String[] args) {
+		loop: while(true) {
+			Scanner console = new Scanner(System.in);
+			System.out.println("Would you like to enter a note, retrieve a note, or exit?" + "\nEnter: 1" + "\nRetrieve: 2" + "\nExit: 3");
+			int condition = console.nextInt();
+			switch(condition) {
+			case 1:
+				enter();
+			case 2:
+				retrieve();
+			case 3:
+				break loop;
+			default:
+				System.out.println("Not a valid entry, please try again.");
+				break;
+			}
+		}
+		/*
+		THIS IS AN EXAMPLE TO SHOW HOW THE .toString() METHOD AND THE Note() CONSTRUCTOR WORK
+		Note n = new Note("Test", "This is a test.", new Date(2019, 04, 9), true);
+		System.out.println(n.toString());
+		*/	
+	}
+	
+	/**
+	 * Outline:
+	 * This method should prompt the user for the title, date, urgency status, and content of a note,
+	 * then create a Note object with those specifications and enter it into both the list and the stack.
+	 * Make sure to receive and enter the date field in the correct Date format: yyyy, mm, d as shown in the 
+	 * example above.
+	 */
+	public static void enter() {
+		// TODO
+	}
+
+	/**
+	 * Outline:
+	 * This method should prompt the user for what kind of retrieval method they want to use: by title, by date,
+	 * by urgency, or by all. It should then traverse the list or the stack and print the appropriate Note objects.
+	 */
+	public static String retrieve() {
+		// TODO
+		return null;
+	}
+}
