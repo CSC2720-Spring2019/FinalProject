@@ -28,7 +28,7 @@ public class Main{
 			case 1:
 
 				enter();
-
+				//UNCOMMENT FOR PRINT   System.out.println(stack.peek().toString());
 			case 2:
 
 				retrieve();
@@ -89,7 +89,7 @@ public class Main{
 		String newDate = dueDate.replaceAll("\\s", "-");
 		//System.out.println(newDate);
 		Date dateDue = parseDate(newDate,formats);
-		System.out.println(dateDue.toString());
+		//System.out.println(dateDue.toString());
 		/*
 		 * Puts Date into MM/dd/yyyy format (Ex. 03/21/2034)
 		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
