@@ -1,0 +1,147 @@
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.LinkedList;
+import java.util.Scanner;
+import java.util.Stack;
+
+
+public class Main2{
+
+	static LinkedList<Note> list = new LinkedList<Note>();
+	static Stack<Note> stack = new Stack<Note>();
+
+	
+
+	public static void main(String[] args) {
+		Scanner console = new Scanner(System.in);
+		while(true) {
+			System.out.println("Would you like to enter a note, retrieve a note, or exit?" + "\nEnter: 1" + "\nRetrieve: 2" + "\nExit: 3");
+			int condition = console.nextInt();
+			if(condition == 1) {
+				enter();
+			}
+			else if(condition == 2) {
+				retrieve();
+			}
+			else if(condition == 3) {
+				break;
+			}
+			else {
+				System.out.println("Not a valid entry, please try again.");
+			}
+		}
+
+		/*
+
+		THIS IS AN EXAMPLE TO SHOW HOW THE .toString() METHOD AND THE Note() CONSTRUCTOR WORK
+
+		Note n = new Note("Test", "This is a test.", new Date(2019, 04, 9), true);
+
+		System.out.println(n.toString());
+
+		*/	
+
+	}
+
+	
+
+	/**
+
+	 * Outline:
+
+	 * This method should prompt the user for the title, date, urgency status, and content of a note,
+
+	 * then create a Note object with those specifications and enter it into both the list and the stack.
+
+	 * Make sure to receive and enter the date field in the correct Date format: yyyy, mm, d as shown in the 
+
+	 * example above.
+
+	 */
+
+	public static void enter() {
+		String[] formats= {"dd-MM-yy","MM-dd-YYYY","yyyy-MM-dd","MMMMM-dd-yyyy","dd-MMMMM-yy","yyyy.MM.dd","dd/MM/yy","dd/MMMMM/yyyy","MMMMM/dd/yyyy","yyyy/MM/dd"};
+		System.out.println("Please enter the title of your note: ");
+		Scanner temp = new Scanner(System.in);
+		String title=temp.nextLine();
+		
+		System.out.println("Please enter the content: ");
+		String content=temp.nextLine();
+		
+		System.out.println("Please enter the date: ");
+		String dueDate=temp.nextLine();
+		String newDate = dueDate.replaceAll("\\s", "-");
+		//System.out.println(newDate);
+		Date dateDue = parseDate(newDate,formats);
+		//System.out.println(dateDue.toString());
+		/*
+		 * Puts Date into MM/dd/yyyy format (Ex. 03/21/2034)
+		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+		String dateDueString = sdf.format(dateDue);
+		System.out.println(dateDueString);
+		*/
+		System.out.println("Is this urgent? (Yes or No): ");
+		boolean urgent = false;
+		String urgentString=temp.nextLine();
+		urgentString=urgentString.toLowerCase();
+		if(urgentString.contains("y")) {
+			urgent=true;
+		}
+		Note dave = new Note(title, content, dateDue, urgent);
+		list.add(dave);
+		stack.add(dave);
+		//temp.close();
+
+	}
+	
+	public static Date parseDate(String dateString, String[] formats)
+	{
+	  Date date = null;
+	  boolean gotIt = false;
+
+	  for (int i = 0; i < formats.length; i++)
+	  {
+	    String format = formats[i];
+	    SimpleDateFormat dateFormat = new SimpleDateFormat(format);
+
+	    try
+	    {
+	      // parse() will throw an exception if the given dateString doesn't match
+	      // the current format
+	      date = dateFormat.parse(dateString);
+	      gotIt = true;
+	      break;
+	    }
+	    catch(ParseException e)
+	    {
+	      // don't do anything. just let the loop continue.
+	      // we may miss on 99 format attempts, but match on one format,
+	      // but that's all we need.
+	    }
+	  }
+
+	  return date;
+	}
+
+
+
+	/**
+
+	 * Outline:
+
+	 * This method should prompt the user for what kind of retrieval method they want to use: by title, by date,
+
+	 * by urgency, or by all. It should then traverse the list or the stack and print the appropriate Note objects.
+
+	 */
+
+	public static String retrieve() {
+
+		// TODO
+
+		return null;
+
+	}
+
+}
