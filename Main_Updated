@@ -167,6 +167,7 @@ public class Main{
 		}
 		else {
 			System.out.println("Not a valid entry, please try again.");
+			retrieve();
 		}
 		return null;
 	}
