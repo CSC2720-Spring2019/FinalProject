@@ -199,7 +199,7 @@ public class Main{
 		System.out.println("Enter the title of the note you would like to delete or enter \"X\" to delete ALL notes:");
 		String option = sc.nextLine();
 		if(option.equalsIgnoreCase("x")) {
-			System.out.println("All notes will be PERMANENTLY removed...\nAre your sure you would like to remove ALL notes? (Y/N)");
+			System.out.println("All notes will be PERMANENTLY deleted...\nAre your sure you would like to delete ALL notes? (Y/N)");
 			String yn = sc.nextLine();
 			if(yn.equalsIgnoreCase("y")) {
 				list.clear();
@@ -213,7 +213,7 @@ public class Main{
 			for(Note n : list) {
 				if(n.getTitle().equalsIgnoreCase(option)) {
 					System.out.println(n);
-					System.out.println("This note will be permanently removed.Are you sure you want to remove this note?(Y/N)");
+					System.out.println("This note will be permanently deleted.Are you sure you want to delete this note?(Y/N)");
 					String r = sc.nextLine();
 					if(r.equalsIgnoreCase("y")) {
 						list.remove(n);
@@ -228,7 +228,7 @@ public class Main{
 			}
 			
 			if(!isFound) {
-				System.out.println("note not found. Try again...");
+				System.out.println("Note not found. Try again...");
 				}
 		}
 		return null;
