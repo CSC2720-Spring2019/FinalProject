@@ -1,5 +1,6 @@
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.Scanner;
@@ -137,22 +138,41 @@ public class Main{
 	 */
 
 	public static String retrieve() {
-
+		String[] formats= {"dd-MM-yy","MM-dd-YYYY","yyyy-MM-dd","MMMMM-dd-yyyy","dd-MMMMM-yy","yyyy.MM.dd","dd/MM/yy","dd/MMMMM/yyyy","MMMMM/dd/yyyy","yyyy/MM/dd"};
 		
 		System.out.println("Would you like to retrieve a title, a date, by urgency, or by all?" + "\nTitle: 1" + "\nDate: 2" + "\nUrgency: 3" + "\nAll: 4");
 		Scanner scan = new Scanner(System.in);
+		Scanner console = new Scanner(System.in);
 		int condition = scan.nextInt();
+		
 		if(condition == 1) {
-			//TODO
-		}
-		else if(condition == 2) {
-			/*System.out.println("Enter the date you are looking for");
-			String date = scan.nextLine();
-			for(int i = 0; i < list.size(); i++ ) {
-				if(list.get(i).getDate().equals(date)) {
+			//retrieval by title
+			
+			System.out.println("Enter the title of the note that you are looking for: ");
+			String title = console.nextLine();
+			for(int i = 0; i < list.size(); i++) {
+				if(list.get(i).getTitle().equals(title)) {
 					System.out.println(list.get(i).toString());
+					break;
 				}
-			}*/
+        System.out.println("A note with this title does not exist.");
+			}
+			
+		}
+		else if(condition == 2) { //Retrieval by Date
+			System.out.println("Enter the date you are looking for:");
+			String date = console.nextLine();
+			Date d = parseDate(date, formats);
+			boolean isFound = false;
+			for(Note n : list) { //for each loop is more efficient
+				if(n.getDate().equals(d)) { 
+					System.out.println(n);
+					isFound = true;
+				}
+			}
+			if(!isFound) {
+				System.out.println("A note with that date does not exist. Try again...\n"); 
+			}	
 		}
 		else if(condition == 3) {
 			for(int i = 0; i < list.size(); i++ ) {
@@ -167,7 +187,6 @@ public class Main{
 		}
 		else {
 			System.out.println("Not a valid entry, please try again.");
-			retrieve();
 		}
 		return null;
 	}
